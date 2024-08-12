@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int        @id @default(autoincrement())
+  name       String
+  phone      String
+  deleted    Boolean
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  customers  Customer[]
+}
+
+model Sim {
+  id         Int        @id @default(autoincrement())
+  deleted    Boolean
+  serial     String     @unique
+  gsmno      String     @unique
+  tariff     String
+  used       Boolean
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  contracts  Contract[]
+}
+
+model Customer {
+  id         Int        @id @default(autoincrement())
+  deleted    Boolean
+  name       String
+  serial     String     @unique
+  represent  Int
+  contact    String
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  staff      User       @relation(fields: [represent], references: [id])
+  contracts  Contract[]
+}
+
+model Device {
+  id         Int        @id @default(autoincrement())
+  deleted    Boolean
+  type       String
+  serial     String     @unique
+  used       Boolean
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  contracts  Contract[]
+}
+
+model Contract {
+  id            Int      @id @default(autoincrement())
+  deleted       Boolean
+  sim_id        Int
+  sim           Sim      @relation(fields: [sim_id], references: [id])
+  customer_id   Int
+  customer      Customer @relation(fields: [customer_id], references: [id])
+  device_id     Int
+  device        Device   @relation(fields: [device_id], references: [id])
+  type          String
+  license_plate String   @unique
+  start         DateTime
+  finish        DateTime
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+}

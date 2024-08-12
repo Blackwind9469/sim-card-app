@@ -1,0 +1,55 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .formSection {
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .simSection {
+    background-color: #f0f0f0;
+  }
+  
+  .customerSection {
+    background-color: #f5f5f5;
+  }
+  
+  .deviceSection {
+    background-color: #fafafa;
+  }
+  
+  .contractSection {
+    background-color: #ffffff;
+  }
+  
+  .formSection h3 {
+    margin-top: 0;
+  }
+  
+  .formInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .submitButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submitButton:hover {
+    background-color: #0056b3;
+  }
