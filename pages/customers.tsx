@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState<Customer[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
+  const [personel, setUsers] = useState<User[]>([]);
   const {
     register,
     handleSubmit,
@@ -70,11 +70,12 @@ export default function CustomersPage() {
             <p className='text-red-500'>{errors.serial.message}</p>
           )}
         </div>
+
         <div className='mb-4'>
           <label className='block mb-2'>Representing Staff</label>
           <select {...register("represent")} className='border p-2'>
             <option value=''>Select a staff member</option>
-            {users.map((user) => (
+            {personel.map((user) => (
               <option key={user.id} value={user.id}>
                 {user.name}
               </option>
@@ -137,8 +138,8 @@ export default function CustomersPage() {
               <td>{customer.name}</td>
               <td>{customer.serial}</td>
               <td>
-                {users.find((user) => user.id === customer.represent)?.name ||
-                  "N/A"}
+                {personel.find((user) => user.id === customer.represent)
+                  ?.name || "N/A"}
               </td>
               <td>{customer.contact}</td>
               <td>{customer.deleted ? "Yes" : "No"}</td>

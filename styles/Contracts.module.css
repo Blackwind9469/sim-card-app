@@ -1,17 +1,17 @@
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 5px;
   }
   
   .form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
   }
   
   .formSection {
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px;
   }
   

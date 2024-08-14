@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     try {
       const sims = await prisma.sim.findMany({
-        //where: { used: false, deleted: false },
+        where: { used: false, deleted: false },
         select: { id: true, serial: true, gsmno: true, tariff: true },
       });
       res.status(200).json(sims);
